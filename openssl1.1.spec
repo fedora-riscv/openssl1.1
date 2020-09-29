@@ -90,6 +90,7 @@ BuildRequires: perl(Test::Harness), perl(Test::More), perl(Math::BigInt)
 BuildRequires: perl(Module::Load::Conditional), perl(File::Temp)
 BuildRequires: perl(Time::HiRes)
 BuildRequires: perl(FindBin), perl(lib), perl(File::Compare), perl(File::Copy)
+Conflicts: openssl-libs < 1:3.0
 
 %description
 The OpenSSL toolkit provides support for secure communications between
