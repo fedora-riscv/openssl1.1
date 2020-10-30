@@ -26,7 +26,7 @@
 Summary: Compatibility version of the OpenSSL library
 Name: openssl1.1
 Version: 1.1.1g
-Release: 2%{?dist}
+Release: 3%{?dist}
 Epoch: 1
 # We have to remove certain patented algorithms from the openssl source
 # tarball with the hobble-openssl script which is included below.
@@ -101,7 +101,7 @@ releases.
 %if %{with devel}
 %package devel
 Summary: Files for development of applications which will use OpenSSL
-Requires: %{name}-libs%{?_isa} = %{epoch}:%{version}-%{release}
+Requires: %{name}%{?_isa} = %{epoch}:%{version}-%{release}
 Requires: pkgconfig
 # The devel subpackage intentionally conflicts with main openssl-devel
 # as simultaneous use of both openssl package cannot be encouraged.
@@ -392,6 +392,9 @@ rm -rf $RPM_BUILD_ROOT%{_libdir}/pkgconfig
 %ldconfig_scriptlets
 
 %changelog
+* Fri Oct 30 2020 Tomáš Mráz <tmraz@redhat.com> 1.1.1g-3
+- Corrected wrong requires in the devel package
+
 * Thu Sep 24 2020 Tomáš Mráz <tmraz@redhat.com> 1.1.1g-2
 - Removed useless capi engine
 
