@@ -25,8 +25,8 @@
 
 Summary: Compatibility version of the OpenSSL library
 Name: openssl1.1
-Version: 1.1.1g
-Release: 3%{?dist}
+Version: 1.1.1i
+Release: 1%{?dist}
 Epoch: 1
 # We have to remove certain patented algorithms from the openssl source
 # tarball with the hobble-openssl script which is included below.
@@ -54,7 +54,6 @@ Patch38: openssl-1.1.1-no-weak-verify.patch
 Patch40: openssl-1.1.1-disable-ssl3.patch
 Patch41: openssl-1.1.1-system-cipherlist.patch
 Patch42: openssl-1.1.1-fips.patch
-Patch43: openssl-1.1.1-ignore-bound.patch
 Patch44: openssl-1.1.1-version-override.patch
 Patch45: openssl-1.1.1-weak-ciphers.patch
 Patch46: openssl-1.1.1-seclevel.patch
@@ -69,7 +68,6 @@ Patch62: openssl-1.1.1-fips-curves.patch
 Patch65: openssl-1.1.1-fips-drbg-selftest.patch
 Patch66: openssl-1.1.1-fips-dh.patch
 Patch67: openssl-1.1.1-kdf-selftest.patch
-Patch68: openssl-1.1.1-reneg-no-extms.patch
 Patch69: openssl-1.1.1-alpn-cb.patch
 Patch70: openssl-1.1.1-rewire-fips-drbg.patch
 # Backported fixes including security fixes
@@ -141,7 +139,6 @@ cp %{SOURCE13} test/
 %patch40 -p1 -b .disable-ssl3
 %patch41 -p1 -b .system-cipherlist
 %patch42 -p1 -b .fips
-%patch43 -p1 -b .ignore-bound
 %patch44 -p1 -b .version-override
 %patch45 -p1 -b .weak-ciphers
 %patch46 -p1 -b .seclevel
@@ -160,7 +157,6 @@ cp %{SOURCE13} test/
 %patch65 -p1 -b .drbg-selftest
 %patch66 -p1 -b .fips-dh
 %patch67 -p1 -b .kdf-selftest
-%patch68 -p1 -b .reneg-no-extms
 %patch69 -p1 -b .alpn-cb
 %patch70 -p1 -b .rewire-fips-drbg
 
@@ -392,6 +388,9 @@ rm -rf $RPM_BUILD_ROOT%{_libdir}/pkgconfig
 %ldconfig_scriptlets
 
 %changelog
+* Wed Dec 9 2020 Tomáš Mráz <tmraz@redhat.com> 1.1.1i-1
+- Update to the 1.1.1i release fixing CVE-2020-1971
+
 * Fri Oct 30 2020 Tomáš Mráz <tmraz@redhat.com> 1.1.1g-3
 - Corrected wrong requires in the devel package
 
