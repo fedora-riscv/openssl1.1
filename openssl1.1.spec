@@ -25,8 +25,8 @@
 
 Summary: Compatibility version of the OpenSSL library
 Name: openssl1.1
-Version: 1.1.1i
-Release: 3%{?dist}
+Version: 1.1.1k
+Release: 1%{?dist}
 Epoch: 1
 # We have to remove certain patented algorithms from the openssl source
 # tarball with the hobble-openssl script which is included below.
@@ -42,8 +42,7 @@ Patch1: openssl-1.1.1-build.patch
 Patch2: openssl-1.1.1-defaults.patch
 Patch3: openssl-1.1.1-no-html.patch
 Patch4: openssl-1.1.1-man-rename.patch
-# Bug fixes
-Patch21: openssl-1.1.0-issuer-hash.patch
+
 # Functionality changes
 Patch31: openssl-1.1.1-conf-paths.patch
 Patch32: openssl-1.1.1-version-add-engines.patch
@@ -128,8 +127,6 @@ cp %{SOURCE13} test/
 %patch2 -p1 -b .defaults
 %patch3 -p1 -b .no-html  %{?_rawbuild}
 %patch4 -p1 -b .man-rename
-
-%patch21 -p1 -b .issuer-hash
 
 %patch31 -p1 -b .conf-paths
 %patch32 -p1 -b .version-add-engines
@@ -389,6 +386,9 @@ rm -rf $RPM_BUILD_ROOT%{_libdir}/pkgconfig
 %ldconfig_scriptlets
 
 %changelog
+* Tue Aug 03 2021 Sahana Prasad <sahana@redhat.com> 1.1.1k-1
+- Compat package rebased to latest upstream version 1.1.1k
+
 * Thu Jul 22 2021 Fedora Release Engineering <releng@fedoraproject.org> - 1:1.1.1i-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild
 
