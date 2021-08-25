@@ -25,8 +25,8 @@
 
 Summary: Compatibility version of the OpenSSL library
 Name: openssl1.1
-Version: 1.1.1k
-Release: 2%{?dist}
+Version: 1.1.1l
+Release: 1%{?dist}
 Epoch: 1
 # We have to remove certain patented algorithms from the openssl source
 # tarball with the hobble-openssl script which is included below.
@@ -373,6 +373,9 @@ rm -rf $RPM_BUILD_ROOT%{_libdir}/pkgconfig
 %ldconfig_scriptlets
 
 %changelog
+* Mon Sep 20 2021 Sahana Prasad <sahana@redhat.com> - 1:1.1.1l-1
+- Upgrade to version 1.1.1.l
+
 * Mon Sep 20 2021 Miro Hrončok <mhroncok@redhat.com> - 1:1.1.1k-2
 - Correctly name the arch-specific opensslconf header
 - Fixes: rhbz#2004517
