@@ -26,7 +26,7 @@
 Summary: Compatibility version of the OpenSSL library
 Name: openssl1.1
 Version: 1.1.1k
-Release: 1%{?dist}
+Release: 2%{?dist}
 Epoch: 1
 # We have to remove certain patented algorithms from the openssl source
 # tarball with the hobble-openssl script which is included below.
@@ -314,6 +314,18 @@ rm -rf $RPM_BUILD_ROOT/%{_bindir}
 # Remove useless capi engine
 rm -f $RPM_BUILD_ROOT/%{_libdir}/engines-1.1/capi.so
 
+# Determine which arch opensslconf.h is going to try to #include.
+basearch=%{_arch}
+%ifarch %{ix86}
+basearch=i386
+%endif
+%ifarch sparcv9
+basearch=sparc
+%endif
+%ifarch sparc64
+basearch=sparc64
+%endif
+
 # Next step of gradual disablement of SSL3.
 # Make SSL3 disappear to newly built dependencies.
 sed -i '/^\#ifndef OPENSSL_NO_SSL_TRACE/i\
@@ -361,6 +373,10 @@ rm -rf $RPM_BUILD_ROOT%{_libdir}/pkgconfig
 %ldconfig_scriptlets
 
 %changelog
+* Mon Sep 20 2021 Miro Hrončok <mhroncok@redhat.com> - 1:1.1.1k-2
+- Correctly name the arch-specific opensslconf header
+- Fixes: rhbz#2004517
+
 * Tue Aug 03 2021 Sahana Prasad <sahana@redhat.com> 1.1.1k-1
 - Compat package rebased to latest upstream version 1.1.1k
 
