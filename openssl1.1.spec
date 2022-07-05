@@ -25,7 +25,7 @@
 
 Summary: Compatibility version of the OpenSSL library
 Name: openssl1.1
-Version: 1.1.1p
+Version: 1.1.1q
 Release: 1%{?dist}
 Epoch: 1
 # We have to remove certain patented algorithms from the openssl source
@@ -373,6 +373,10 @@ rm -rf $RPM_BUILD_ROOT%{_libdir}/pkgconfig
 %ldconfig_scriptlets
 
 %changelog
+* Thu Jul 07 2022 Clemens Lang <cllang@redhat.com> - 1:1.1.1q-1
+- Upgrade to 1.1.1q
+  Resolves: CVE-2022-2097
+
 * Thu Jun 30 2022 Clemens Lang <cllang@redhat.com> - 1:1.1.1p-1
 - Upgrade to 1.1.1p
   Resolves: CVE-2022-2068
