@@ -26,7 +26,7 @@
 Summary: Compatibility version of the OpenSSL library
 Name: openssl1.1
 Version: 1.1.1q
-Release: 1%{?dist}
+Release: 2%{?dist}
 Epoch: 1
 # We have to remove certain patented algorithms from the openssl source
 # tarball with the hobble-openssl script which is included below.
@@ -89,6 +89,7 @@ BuildRequires: perl(Module::Load::Conditional), perl(File::Temp)
 BuildRequires: perl(Time::HiRes)
 BuildRequires: perl(FindBin), perl(lib), perl(File::Compare), perl(File::Copy)
 Conflicts: openssl-libs < 1:3.0
+Provides: deprecated()
 
 %description
 The OpenSSL toolkit provides support for secure communications between
@@ -106,6 +107,7 @@ Requires: pkgconfig
 # Making the packages non-conflicting would also require further
 # changes in the dependent packages.
 Conflicts: openssl-devel
+Provides: deprecated()
 
 %description devel
 OpenSSL is a toolkit for supporting cryptography. The openssl-devel
@@ -373,6 +375,10 @@ rm -rf $RPM_BUILD_ROOT%{_libdir}/pkgconfig
 %ldconfig_scriptlets
 
 %changelog
+* Thu Jul 21 2022 Dmitry Belyavskiy <dbelyavs@redhat.com> - 1:1.1.1q-2
+- Deprecate this package
+  Resolves: rhbz#2108694
+
 * Thu Jul 07 2022 Clemens Lang <cllang@redhat.com> - 1:1.1.1q-1
 - Upgrade to 1.1.1q
   Resolves: CVE-2022-2097
