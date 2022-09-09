@@ -26,7 +26,7 @@
 Summary: Compatibility version of the OpenSSL library
 Name: openssl1.1
 Version: 1.1.1q
-Release: 4%{?dist}
+Release: 4.rv64%{?dist}
 Epoch: 1
 # We have to remove certain patented algorithms from the openssl source
 # tarball with the hobble-openssl script which is included below.
@@ -237,6 +237,9 @@ export HASHBANGPERL=/usr/bin/perl
 # RPM_OPT_FLAGS, so we can skip specifiying them here.
 ./Configure \
 	--prefix=%{_prefix} --openssldir=%{_sysconfdir}/pki/tls ${sslflags} \
+%ifarch riscv64
+	--libdir=%{_lib} \
+%endif
 	--system-ciphers-file=%{_sysconfdir}/crypto-policies/back-ends/openssl.config \
 	zlib enable-camellia enable-seed enable-rfc3779 enable-sctp \
 	enable-cms enable-md2 enable-rc5 enable-ssl3 enable-ssl3-method \
@@ -377,11 +380,17 @@ rm -rf $RPM_BUILD_ROOT%{_libdir}/pkgconfig
 %ldconfig_scriptlets
 
 %changelog
+* Thu Apr 27 2023 Liu Yang <Yang.Liu.sn@gmail.com> - 1:1.1.1q-4.rv64
+- Cherry-pick davidlt's patch for Fedora 38 rebuild.
+
 * Mon Feb 06 2023 Florian Weimer <fweimer@redhat.com> - 1:1.1.1q-4
 - Backport upstream patch to fix C99 compatibility issue
 
 * Thu Jan 19 2023 Fedora Release Engineering <releng@fedoraproject.org> - 1:1.1.1q-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_38_Mass_Rebuild
+
+* Fri Sep 09 2022 David Abdurachmanov <davidlt@rivosinc.com> - 1:1.1.1q-2.rv64
+- Add --libdir=%{_lib} for riscv64 (uses linux-generic64)
 
 * Thu Jul 21 2022 Dmitry Belyavskiy <dbelyavs@redhat.com> - 1:1.1.1q-2
 - Deprecate this package
