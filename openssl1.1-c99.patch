@@ -1,0 +1,27 @@
+commit 60f011f584d80447e86cae1d1bd3ae24bc13235b
+Author: Gregor Jasny <gjasny@googlemail.com>
+Date:   Tue Jul 5 12:57:06 2022 +0200
+
+    Add missing header for memcmp
+    
+    CLA: trivial
+    
+    Reviewed-by: Paul Dale <pauli@openssl.org>
+    Reviewed-by: Dmitry Belyavskiy <beldmit@gmail.com>
+    Reviewed-by: Todd Short <todd.short@me.com>
+    Reviewed-by: Richard Levitte <levitte@openssl.org>
+    (Merged from https://github.com/openssl/openssl/pull/18719)
+    
+    (cherry picked from commit f9e578e720bb35228948564192adbe3bc503d5fb)
+
+diff -ur openssl-1.1.1q.orig/test/v3ext.c openssl-1.1.1q/test/v3ext.c
+--- openssl-1.1.1q.orig/test/v3ext.c	2022-07-05 11:08:33.000000000 +0200
++++ openssl-1.1.1q/test/v3ext.c	2023-02-06 14:23:39.180200398 +0100
+@@ -8,6 +8,7 @@
+  */
+ 
+ #include <stdio.h>
++#include <string.h>
+ #include <openssl/x509.h>
+ #include <openssl/x509v3.h>
+ #include <openssl/pem.h>
