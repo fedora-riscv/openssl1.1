@@ -26,7 +26,7 @@
 Summary: Compatibility version of the OpenSSL library
 Name: openssl1.1
 Version: 1.1.1q
-Release: 4.rv64%{?dist}
+Release: 5.rv64%{?dist}
 Epoch: 1
 # We have to remove certain patented algorithms from the openssl source
 # tarball with the hobble-openssl script which is included below.
@@ -380,6 +380,9 @@ rm -rf $RPM_BUILD_ROOT%{_libdir}/pkgconfig
 %ldconfig_scriptlets
 
 %changelog
+* Thu Jul 20 2023 Fedora Release Engineering <releng@fedoraproject.org> - 1:1.1.1q-5
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_39_Mass_Rebuild
+
 * Thu Apr 27 2023 Liu Yang <Yang.Liu.sn@gmail.com> - 1:1.1.1q-4.rv64
 - Cherry-pick davidlt's patch for Fedora 38 rebuild.
 
